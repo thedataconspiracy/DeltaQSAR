@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SARpy 2 — Quickstart</title>
+  <meta name="author" content="Thomas Ferrari">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    /* Basic layout & typography */
+    :root{
+      --page-margin: 1in;
+      --content-width: 760px;
+      --heading-color: #1b3a57;
+      --accent: #2b7aaf;
+      --muted: #666;
+      --serif: "Times New Roman", Georgia, serif;
+      --sans: Arial, Helvetica, sans-serif;
+    }
+    html,body{height:100%;}
+    body{
+      font-family: var(--serif);
+      color:#222;
+      margin:0;
+      background: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    .page {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 36px;
+    }
+
+    header.doc-header{
+      text-align:left;
+      margin-bottom: 0.5em;
+      padding-bottom: 0.25em;
+      border-bottom: 1px solid #e2e8ef;
+    }
+    header.doc-header h1{
+      font-size: 28px;
+      margin: 0 0 6px 0;
+      color: var(--heading-color);
+    }
+    header.doc-header .meta{
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    nav.toc{
+      margin: 18px 0;
+      padding: 12px;
+      background:#fafcff;
+      border-left:4px solid var(--accent);
+      border-radius:4px;
+      font-family: var(--sans);
+    }
+    nav.toc h2{margin:0 0 6px 0;font-size:14px;color:var(--heading-color);}
+    nav.toc ul{margin:0;padding-left:1.1em;}
+    nav.toc a{color:var(--accent); text-decoration:none;}
+    nav.toc a:hover{text-decoration:underline;}
+
+    h2 { color: var(--heading-color); margin-top:1.1em; }
+    h3 { color: var(--heading-color); margin-top:0.8em; font-size:1.05rem; }
+    p, li { line-height:1.45; font-size:1rem; }
+    ul, ol { margin: 0.6em 0 0.6em 1.2em; }
+
+    blockquote{
+      border-left: 4px solid #ddd;
+      padding: 8px 12px;
+      color: #333;
+      background:#fbfcfd;
+      margin: 0.6em 0;
+    }
+    pre, code{
+      font-family: "Courier New", monospace;
+      background:#f7f7f7;
+      border:1px solid #eee;
+      padding:6px 8px;
+      border-radius:4px;
+      font-size:0.95rem;
+    }
+    pre{ overflow:auto; padding:12px; }
+
+    table { border-collapse: collapse; margin: 0.6em 0; width:100%; }
+    table th, table td { border:1px solid #e3e7ea; padding:8px; text-align:left; }
+    table th { background:#f3f7fb; }
+
+    footer.print-footer{
+      font-family: var(--sans);
+      font-size:0.9rem;
+      color:var(--muted);
+      text-align:center;
+      padding-top:12px;
+      border-top:1px solid #eee;
+      margin-top:28px;
+    }
+
+    /* Print specific styling */
+    @media print{
+      body{margin:0;}
+      .page { padding: 0.25in; max-width: auto; }
+      nav.toc { page-break-inside: avoid; }
+      pre, table { page-break-inside: avoid; }
+      header.doc-header, footer.print-footer { position: static; }
+      /* Page numbers in footer */
+      footer.print-footer:after{
+        content: " — Page " counter(page) " of " counter(pages);
+      }
+      @page {
+        margin: var(--page-margin);
+        counter-increment: pages;
+      }
+    }
+
+    /* Simple responsive */
+    @media (max-width:700px){
+      .page{ padding:18px; }
+      header.doc-header h1{font-size:22px;}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="doc-header">
+      <h1>SARpy 2 — Quickstart</h1>
+      <div class="meta">Author: Thomas Ferrari — Date: 2025-09-25</div>
+    </header>
+
+    <nav class="toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#extraction">Extraction panel and sliders</a>
+          <ul>
+            <li><a href="#general-behavior">General behavior</a></li>
+            <li><a href="#sliders-explained">Sliders explained</a></li>
+          </ul>
+        </li>
+        <li><a href="#mono-class">Mono-class mode</a></li>
+        <li><a href="#multi-class">Multi-class mode</a></li>
+        <li><a href="#prediction">Prediction by decomposition</a></li>
+        <li><a href="#advanced">Advanced functions</a></li>
+        <li><a href="#numeric">Numeric parameters</a></li>
+        <li><a href="#options">Options</a></li>
+        <li><a href="#notes">Notes and recommendations</a></li>
+      </ul>
+    </nav>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>After fragmenting the training set, open the extraction panel to tune the model according to user requirements. During this phase the algorithm identifies several candidate classification rules and ranks them by F-score (the harmonic mean of precision and recall). Rules are selected one by one starting from the best. The available sliders let you control:</p>
+      <ol>
+        <li>the error-rate threshold at which selection stops, and</li>
+        <li>the F-score “beta” parameter that weights recall vs. precision.</li>
+      </ol>
+    </section>
+
+    <section id="extraction">
+      <h2>Extraction panel and sliders</h2>
+
+      <h3 id="general-behavior">General behavior</h3>
+      <p>The extraction process proposes multiple rules ordered by their F-score. The user can select how many rules to accept by adjusting the sliders described below. Rules are presented in descending order of F-score and are added one at a time.</p>
+
+      <h3 id="sliders-explained">Sliders explained</h3>
+      <ul>
+        <li><strong>Error rate slider</strong>: sets the maximum allowed error rate (stopping criterion for rule selection).</li>
+        <li><strong>Beta slider</strong>: sets the β parameter of F-score that balances precision and recall.</li>
+      </ul>
+    </section>
+
+    <section id="mono-class">
+      <h2>Mono-class mode</h2>
+      <p>To generate classical SAR models, choose (top-right) the single class for which to extract Structural Alerts.</p>
+
+      <h3 id="max-error">MAX ERROR</h3>
+      <p>Controls the sensitivity/specificity trade-off by extracting more or fewer rules.</p>
+      <ul>
+        <li>Center position: optimal value (maximum accuracy).</li>
+        <li>Move left: extract only the best rules (higher specificity).</li>
+        <li>Move right: extract a larger number of rules (higher sensitivity).</li>
+      </ul>
+
+      <h3 id="beta">BETA</h3>
+      <p>Controls the precision/recall trade-off.</p>
+      <ul>
+        <li>Far left (β = 0): only precision is considered; recall has zero weight. This favors rules with fewer false positives (FP), regardless of true positives (TP).</li>
+        <li>Move right: progressively increases the weight of recall. For example, the algorithm might prefer a rule with 100 TP and 1 FP over a rule with 10 TP and 0 FP because the larger recall can outweigh a small precision drop.</li>
+      </ul>
+
+      <blockquote>
+        Note: there is no single “correct” setting; the choice depends on whether you prefer many small, very precise rules, or fewer rules with greater sensitivity.
+      </blockquote>
+    </section>
+
+    <section id="multi-class">
+      <h2>Multi-class mode</h2>
+      <p>If no class is specified, SARpy extracts rules for all classes. This mode is not binary (there may be three or more classes), so the notions of "positive" and "negative" do not apply the same way as in mono-class mode. In multi-class mode alerts may identify any class and compounds without matching alerts remain unpredicted. This changes the interpretation of the first slider even though the selection procedure is the same.</p>
+
+      <h3 id="max-error-in-multi">MAX ERROR in multi-class</h3>
+      <p>Controls the precision/coverage trade-off across all classes simultaneously.</p>
+      <ul>
+        <li>Move left: fewer rules, higher precision, more non-predicted compounds.</li>
+        <li>Move right: more rules, fewer non-predicted compounds, at the cost of lower precision.</li>
+      </ul>
+
+      <h3 id="beta-in-multi">BETA in multi-class</h3>
+      <p>Behaves identically to the mono-class case (weights precision vs recall).</p>
+    </section>
+
+    <section id="prediction">
+      <h2>Prediction by decomposition</h2>
+      <p>For binary classification models, pressing “PREDICT” again will reprocess any non-predicted compounds using the decomposition technique developed for QSARpy, thus broadening the prediction coverage.</p>
+    </section>
+
+    <section id="advanced">
+      <h2>Advanced functions</h2>
+      <p>In the extraction panel's "Advanced parameters" there are two checkboxes of particular interest in addition to numeric parameters.</p>
+
+      <h3 id="explicit-hydrogens">Explicit hydrogens (default: enabled)</h3>
+      <p>Explicit hydrogens produce stricter rules. By specifying where hydrogen bonds must exist and where other atoms may appear (represented by the wildcard <code>*</code>) you define the alert's neighborhood. Defining the neighborhood means specifying how the alert is connected to the rest of the molecule—for example whether it must lie in an exterior region (many H) or can be nested inside the molecule (many <code>*</code>).</p>
+
+      <h3 id="exclusions">Exclusions (default: disabled)</h3>
+      <p>This enables the search for "exceptions" to a rule. Exclusions appear in the list of generated SMARTS.</p>
+      <p>Example:</p>
+      <pre>&lt;SMARTS_1&gt; - EXC [ &lt;SMARTS_2&gt;, &lt;SMARTS_3&gt; ]</pre>
+      <p>This denotes an alert that fires if <code>SMARTS_1</code> is present but neither <code>SMARTS_2</code> nor <code>SMARTS_3</code> are present. Exclusion patterns are typically superstructures of the base pattern.</p>
+    </section>
+
+    <section id="numeric">
+      <h2>Numeric parameters</h2>
+      <p>Numeric parameters were introduced to optimize runtime by excluding computations with high complexity but low statistical significance.</p>
+
+      <h3 id="max-depth">MAX DEPTH (default = 4)</h3>
+      <p>Maximum number of bonds to cut during fragmentation (i.e., the maximum number of wildcards <code>*</code> in a fragment SMILES). Computational complexity grows exponentially with <code>max depth</code>, while rules expressed by fragments with more than four <code>*</code> are very rare.</p>
+
+      <h3 id="min-samples">MIN SAMPLES (default = 4)</h3>
+      <p>Fragments with low occurrence in the training set (i.e., appearing fewer than 4 times) are extremely numerous (and time-consuming) but statistically insignificant.</p>
+
+      <h3 id="max-atoms">MAX ATOMS (default = 18)</h3>
+      <p>The number of permutations grows factorially with the number of atoms; fragments with many atoms tend to be too specific.</p>
+
+      <p>Although these parameters can usually be left at their defaults, removing user access to them would reduce control. For example:</p>
+      <ul>
+        <li>For small training sets you may want to lower <code>MIN SAMPLES</code>.</li>
+        <li>For very large training sets you may increase <code>MIN SAMPLES</code> to limit overfitting.</li>
+        <li><code>MAX ATOMS</code> can be increased for datasets with unusually large molecules.</li>
+      </ul>
+    </section>
+
+    <section id="options">
+      <h2>Options</h2>
+      <ul>
+        <li><strong>Open Babel / RDKit</strong>: choose the chemical toolkit used for operations.</li>
+        <li><strong>Speed-up</strong>: enabled by default. The "fast" mode uses fingerprints to accelerate SMARTS matching (this can produce false negatives). Fragmentation of computationally heavy compounds is also reduced in this mode.</li>
+      </ul>
+    </section>
+
+    <section id="notes">
+      <h2>Notes and recommendations</h2>
+      <ul>
+        <li>There is no universally correct slider setting; choose according to your priorities (precision vs coverage vs interpretability).</li>
+        <li>Use Explicit Hydrogens when you need stricter, more context-specific alerts.</li>
+        <li>Use Exclusions to express known exceptions or to refine the applicability of an alert.</li>
+        <li>Adjust numeric parameters only if you understand the dataset size and the computational trade-offs.</li>
+      </ul>
+    </section>
+
+    <footer class="print-footer">
+      SARpy 2 — Quickstart — Thomas Ferrari
+    </footer>
+  </div>
+</body>
+</html>
