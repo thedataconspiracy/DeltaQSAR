@@ -1,0 +1,14 @@
+name: DeltaQSAR
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8
+  - nomkl
+  - matplotlib-base=3.3.4
+  - numpy
+  - openbabel
+  - pyinstaller
+  - rdkit
+  - wxpython
+prefix: /home/thomas/miniconda3/envs/DeltaQSAR
