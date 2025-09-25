@@ -41,11 +41,9 @@ Start the graphical user interface:
 python GUI.py
 ```
 
-When running on Windows, prebuilt executable binaries are available (see the "Windows binaries" link below)
-
 ## Documentation (local files)
 
-Two HTML tutorials are included in this repository. Open them in your browser for step-by-step guidance:
+Two HTML tutorials are included in this repository:
 
 - [SARpy Quickstart](https://thedataconspiracy.github.io/DeltaQSAR/SARpy2_Quickstart.html)
 - [QSARpy Manual](https://thedataconspiracy.github.io/DeltaQSAR/QSARpy2_Manual.html)
