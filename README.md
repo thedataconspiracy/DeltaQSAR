@@ -44,8 +44,8 @@ When running on Windows, prebuilt executable binaries are available (see the "Wi
 
 Two HTML tutorials are included in this repository. Open them in your browser for step-by-step guidance:
 
-- [SARpy quickstart](./SARpy2_Quickstart.html)
-- [QSAR manual](./QSARpy2_Manual.html)
+- [SARpy quickstart](https://thedataconspiracy.github.io/DeltaQSAR/SARpy2_Quickstart.html)
+- [QSAR manual](https://thedataconspiracy.github.io/DeltaQSAR/QSARpy2_Manual.html)
 
 (You can also view these files directly on GitHub in the repository root.)
 
