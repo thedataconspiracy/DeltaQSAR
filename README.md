@@ -5,8 +5,8 @@
 Δ-QSAR (Delta-QSAR) is a knowledge discovery suite designed to automate the induction of Structure-Activity Relationship (SAR) and Quantitative Structure-Activity Relationship (QSAR) rules. This tool empowers researchers, chemists, and data scientists to derive meaningful insights from chemical datasets, enabling advancements in drug discovery, material science, and other related fields.
 
 Version: 0.2
-- SARpy v2.0
-- QSARpy v2.1
+- SARpy v2.0 (SAR)
+- QSARpy v2.1 (QSAR)
 
 Copyright (C) 2021-2025 Thomas Ferrari
 
@@ -48,9 +48,7 @@ When running on Windows, prebuilt executable binaries are available (see the "Wi
 Two HTML tutorials are included in this repository. Open them in your browser for step-by-step guidance:
 
 - [SARpy quickstart](https://thedataconspiracy.github.io/DeltaQSAR/SARpy2_Quickstart.html)
-- [QSAR manual](https://thedataconspiracy.github.io/DeltaQSAR/QSARpy2_Manual.html)
-
-(You can also view these files directly on GitHub in the repository root.)
+- [QSARpy manual](https://thedataconspiracy.github.io/DeltaQSAR/QSARpy2_Manual.html)
 
 ## Windows executable binaries
 
