@@ -4,7 +4,10 @@
 
 Δ-QSAR (Delta-QSAR) is a knowledge discovery suite designed to automate the induction of Structure-Activity Relationship (SAR) and Quantitative Structure-Activity Relationship (QSAR) rules. This tool empowers researchers, chemists, and data scientists to derive meaningful insights from chemical datasets, enabling advancements in drug discovery, material science, and other related fields.
 
-Version: 0.2  
+**Suite Version:** 0.2  
+**Contained Applications:**  
+- **QSARpy:** v2.1  
+- **SARpy:** v2.0  
 Copyright (C) 2021-2025 Thomas Ferrari
 
 ---
